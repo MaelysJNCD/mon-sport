@@ -8,7 +8,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Mon Sport" />
   <title>Mon Sport</title>
-  <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22Mon%20Sport%22%2C%22short_name%22%3A%22Mon%20Sport%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231a1a2e%22%2C%22theme_color%22%3A%22%231a1a2e%22%2C%22start_url%22%3A%22%2F%22%7D" />
+  <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22Mon%20Sport%22%2C%22short_name%22%3A%22Mon%20Sport%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23111827%22%2C%22theme_color%22%3A%22%231a1a2e%22%2C%22start_url%22%3A%22%2F%22%7D" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -38,27 +40,27 @@
 
     /* NAV */
     nav { background: var(--surface); border-top: 1px solid var(--border); display: flex; height: calc(var(--nav-h) + env(safe-area-inset-bottom,0)); padding-bottom: env(safe-area-inset-bottom,0); flex-shrink: 0; }
-    .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: none; background: none; cursor: pointer; padding: 8px 4px; color: var(--text-muted); font-size: 10px; font-family: inherit; transition: color 0.15s; -webkit-tap-highlight-color: transparent; }
+    .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: none; background: none; cursor: pointer; padding: 4px 4px 8px; color: var(--text-muted); font-size: 10px; font-family: inherit; transition: color 0.15s; -webkit-tap-highlight-color: transparent; }
     .nav-btn svg { transition: transform 0.15s; }
     .nav-btn.active { color: var(--green); }
     .nav-btn.active svg { transform: translateY(-1px); }
 
     /* CARDS */
     .card { background: var(--surface); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; border: 1px solid var(--border); }
-    .section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; margin-top: 4px; }
+    .section-title { font-size: 13px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; margin-top: 4px; }
 
     /* STATS */
     .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
     .stat-card { background: var(--surface); border-radius: var(--radius); padding: 14px; border: 1px solid var(--border); }
     .stat-card .stat-icon { font-size: 18px; margin-bottom: 8px; }
-    .stat-card .stat-val { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
-    .stat-card .stat-lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .stat-card .stat-val { font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
+    .stat-card .stat-lbl { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 
     /* QUICK START */
-    .quick-start { background: var(--navy); border-radius: var(--radius); padding: 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-    .quick-start .qs-title { font-size: 14px; font-weight: 600; color: #fff; }
-    .quick-start .qs-sub { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 3px; }
-    .btn-green { background: var(--green); color: var(--green-dark); border: none; border-radius: 20px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+    .quick-start { background: var(--navy); border-radius: var(--radius); padding: 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .quick-start .qs-title { font-size: 17px; font-weight: 600; color: #fff; }
+    .quick-start .qs-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+    .btn-green { background: var(--green); color: var(--green-dark); border: none; border-radius: 20px; padding: 10px 18px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
 
     /* BIBLIO */
     .search-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
@@ -76,11 +78,12 @@
     .exo-row .exo-name { font-size: 14px; font-weight: 500; color: var(--text); }
     .exo-row .exo-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
     .exo-row .exo-arrow { color: var(--text-muted); font-size: 16px; }
-    .fab { position: fixed; bottom: calc(var(--nav-h) + 16px + env(safe-area-inset-bottom,0)); right: calc(50% - 240px + 16px); width: 52px; height: 52px; border-radius: 50%; background: var(--green); border: none; cursor: pointer; font-size: 24px; color: var(--green-dark); font-weight: 300; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(74,222,128,0.4); -webkit-tap-highlight-color: transparent; z-index: 10; }
+    .fab { position: fixed; bottom: calc(var(--nav-h) + 16px + env(safe-area-inset-bottom,0)); right: 16px; width: 52px; height: 52px; border-radius: 50%; background: var(--green); border: none; cursor: pointer; font-size: 24px; color: var(--green-dark); font-weight: 300; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(74,222,128,0.4); -webkit-tap-highlight-color: transparent; z-index: 10; }
 
     /* OVERLAY */
     .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; max-width: 480px; margin: 0 auto; }
     .overlay.open { display: flex; flex-direction: column; justify-content: flex-end; }
+    #overlay-pick-fiche { z-index: 200; }
     .sheet { background: var(--surface); border-radius: 20px 20px 0 0; padding: 20px 20px calc(20px + env(safe-area-inset-bottom,0)); max-height: 90vh; overflow-y: auto; }
     .sheet-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 16px; }
     .sheet h2 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 16px; }
@@ -136,7 +139,7 @@
     .chrono-btn { border: none; cursor: pointer; font-family: inherit; font-weight: 700; -webkit-tap-highlight-color: transparent; transition: transform 0.1s; }
     .chrono-btn:active { transform: scale(0.94); }
     .chrono-btn.primary { width: 72px; height: 72px; border-radius: 50%; background: var(--green); color: var(--green-dark); font-size: 24px; }
-    .chrono-btn.primary.stop { background: #fca5a5; color: #dc2626; }
+    .chrono-btn.primary.stop { background: #fca5a5; color: #fff; }
     .chrono-btn.secondary { width: 52px; height: 52px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); font-size: 13px; }
     .chrono-btn.secondary:disabled { opacity: 0.35; cursor: default; }
     .laps-list { display: flex; flex-direction: column; gap: 0; }
@@ -147,13 +150,13 @@
     .lap-row.best .lap-time { color: var(--green); }
     .lap-row.worst .lap-time { color: #f87171; }
     .countdown-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
-    .countdown-inputs { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 24px; }
-    .time-input-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-    .time-input-wrap input { width: 80px; height: 72px; text-align: center; font-size: 36px; font-weight: 700; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 14px; font-family: inherit; outline: none; -moz-appearance: textfield; }
-    .time-input-wrap input::-webkit-outer-spin-button, .time-input-wrap input::-webkit-inner-spin-button { -webkit-appearance: none; }
-    .time-input-wrap input:focus { border-color: var(--green); }
+    .countdown-inputs { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px; }
+    .time-input-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .cd-arrow-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; width: 52px; height: 36px; font-size: 16px; color: var(--text-muted); cursor: pointer; font-family: inherit; -webkit-tap-highlight-color: transparent; transition: background 0.1s; }
+    .cd-arrow-btn:active { background: var(--bg); color: var(--green); }
+    .cd-num-display { width: 72px; height: 72px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
     .time-input-unit { font-size: 11px; color: var(--text-muted); font-weight: 600; }
-    .time-colon { font-size: 40px; font-weight: 700; color: var(--text-muted); margin-bottom: 16px; }
+    .time-colon { font-size: 40px; font-weight: 700; color: var(--text-muted); margin-bottom: 0; align-self: center; }
     .countdown-progress-wrap { display:none; }
     .cd-circle-wrap { position: relative; width: 220px; height: 220px; margin: 0 auto 24px; }
     .cd-svg { width: 220px; height: 220px; transform: scaleX(-1); }
@@ -167,9 +170,12 @@
     .seance-card-nom { font-size: 16px; font-weight: 600; color: var(--text); }
     .seance-card-meta { font-size: 12px; color: var(--text-muted); }
     .seance-card-btns { display: flex; gap: 8px; margin-top: 12px; }
-    .btn-launch { flex: 2; background: var(--green); color: var(--green-dark); border: none; border-radius: 10px; padding: 10px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; }
-    .btn-edit { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; font-family: inherit; }
-    .btn-del-seance { flex: 0 0 40px; background: #fff0f0; border: 1px solid #fca5a5; border-radius: 10px; padding: 10px; font-size: 14px; cursor: pointer; }
+    .btn-launch { flex: 3; background: var(--green); color: var(--green-dark); border: none; border-radius: 10px; padding: 12px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .btn-edit { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px; font-size: 16px; cursor: pointer; font-family: inherit; text-align: center; }
+    .seances-section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; margin-top: 4px; }
+    .btn-fav { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px; font-size: 16px; cursor: pointer; color: var(--text-muted); text-align: center; }
+    .btn-fav.active { background: #fef3c7; border-color: #f59e0b; color: #f59e0b; }
+    .btn-del-seance { flex: 1; background: #fff0f0; border: 1px solid #fca5a5; border-radius: 10px; padding: 12px; font-size: 16px; cursor: pointer; text-align: center; }
 
     .bloc-card { border-radius: 14px; padding: 14px; margin-bottom: 10px; border-left: 4px solid transparent; }
     .bloc-card.echauf { background: #fff7ed; border-left-color: #fb923c; border: 1px solid #fed7aa; border-left: 4px solid #fb923c; }
@@ -210,6 +216,7 @@
     .param-input:focus { border-color: #7c3aed; }
     .unit-lbl-blue { font-size: 12px; color: #7c3aed; }
     .btn-add-exo { width: 100%; background: none; border: 1px dashed #c4b5fd; border-radius: 10px; padding: 10px; font-size: 13px; color: #7c3aed; font-weight: 600; cursor: pointer; font-family: inherit; margin-bottom: 4px; }
+    .btn-pick-add { width: 40px; height: 40px; border-radius: 50%; background: var(--green); color: var(--green-dark); border: none; font-size: 24px; font-weight: 300; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
     .btn-add-circuit { width: 100%; background: #f5f3ff; border: 1px solid #c4b5fd; border-radius: 12px; padding: 12px; font-size: 13px; color: #6d28d9; font-weight: 600; cursor: pointer; font-family: inherit; margin-bottom: 4px; }
     .tours-counter { display: flex; align-items: center; gap: 12px; margin-top: 10px; background: #f5f3ff; border-radius: 14px; border: 1px solid #c4b5fd; padding: 10px 14px; }
     .tours-btn { width: 44px; height: 44px; border-radius: 50%; border: none; background: #7c3aed; color: #fff; font-size: 24px; font-weight: 400; cursor: pointer; flex-shrink: 0; font-family: inherit; display: flex; align-items: center; justify-content: center; line-height: 1; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -330,7 +337,6 @@
         <h1>Mon <span>Sport</span></h1>
         <p id="header-sub">Bonjour 👋</p>
       </div>
-      <button class="header-settings" onclick="openSettings()" aria-label="Paramètres">⚙️</button>
     </div>
   </header>
 
@@ -353,7 +359,6 @@
       <div class="quick-start">
         <div>
           <div class="qs-title">Démarrer une séance</div>
-          <div class="qs-sub" id="qs-sub-text">Crée ta première séance !</div>
         </div>
         <button class="btn-green" onclick="openStartOptions()">▶ Lancer</button>
       </div>
@@ -387,16 +392,22 @@
           <p class="countdown-label">Durée</p>
           <div class="countdown-inputs">
             <div class="time-input-wrap">
-              <input type="number" id="cd-min" value="5" min="0" max="99" />
+              <button class="cd-arrow-btn" onclick="changeCD('min',1)">▲</button>
+              <div class="cd-num-display" id="cd-min-display">05</div>
+              <button class="cd-arrow-btn" onclick="changeCD('min',-1)">▼</button>
               <span class="time-input-unit">min</span>
             </div>
             <span class="time-colon">:</span>
             <div class="time-input-wrap">
-              <input type="number" id="cd-sec" value="0" min="0" max="59" />
+              <button class="cd-arrow-btn" onclick="changeCD('sec',1)">▲</button>
+              <div class="cd-num-display" id="cd-sec-display">00</div>
+              <button class="cd-arrow-btn" onclick="changeCD('sec',-1)">▼</button>
               <span class="time-input-unit">sec</span>
             </div>
           </div>
-          <button class="btn-green" style="width:100%;padding:14px;font-size:16px;border-radius:14px;" onclick="countdownStart()">▶ Lancer</button>
+          <div class="chrono-btns" style="margin-top:24px;">
+            <button class="chrono-btn primary" onclick="countdownStart()">▶</button>
+          </div>
         </div>
         <div class="countdown-running" id="countdown-running" style="display:none;">
           <div class="cd-circle-wrap">
@@ -410,7 +421,7 @@
           </div>
           <div class="chrono-btns">
             <button class="chrono-btn secondary" id="cd-lap-btn" onclick="countdownLap()">Tour</button>
-            <button class="chrono-btn primary" id="cd-pause-btn" onclick="countdownPauseResume()">⏸</button>
+            <button class="chrono-btn primary stop" id="cd-pause-btn" onclick="countdownPauseResume()">⏸</button>
             <button class="chrono-btn secondary" onclick="countdownStop()">↺</button>
           </div>
           <div id="countdown-laps"></div>
@@ -422,6 +433,10 @@
     <!-- SÉANCES -->
     <div class="tab-content" id="tab-seances">
       <div id="seances-list">
+        <div class="search-box" style="margin-bottom:12px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a7a8c" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="seances-search" placeholder="Rechercher une séance..." oninput="renderSeancesList()" />
+        </div>
         <div id="seances-empty" style="display:none;">
           <div class="placeholder">
             <div class="placeholder-icon">
@@ -457,7 +472,7 @@
             </div>
             <div id="bloc-echauf-body">
               <div class="inline-row">
-                <input type="number" id="echauf-min" value="5" min="0" max="60" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
+                <input type="number" id="echauf-min" value="2" min="0" max="60" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
                 <span class="unit-lbl">min</span>
                 <input type="number" id="echauf-sec" value="0" min="0" max="59" step="15" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
                 <span class="unit-lbl">sec</span>
@@ -477,7 +492,7 @@
             </div>
             <div id="bloc-recup-body">
               <div class="inline-row">
-                <input type="number" id="recup-min" value="5" min="0" max="60" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
+                <input type="number" id="recup-min" value="2" min="0" max="60" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
                 <span class="unit-lbl">min</span>
                 <input type="number" id="recup-sec" value="0" min="0" max="59" step="15" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
                 <span class="unit-lbl">sec</span>
@@ -486,12 +501,11 @@
           </div>
         </div>
 
-        <!-- LIBRE -->
-        <div id="seance-libre" style="display:none;">
         <div class="sheet-btns" style="margin-top:16px;">
-          <button class="btn-cancel" onclick="cancelCreateSeance()">Annuler</button>
-          <button class="btn-save" onclick="saveSeance()">Enregistrer</button>
+          <button class="btn-save" style="flex:3;" onclick="saveSeance()">Enregistrer</button>
+          <button class="btn-del-seance" onclick="cancelCreateSeance()">🗑</button>
         </div>
+
       </div>
 
       <!-- LECTEUR DE SÉANCE -->
@@ -618,7 +632,7 @@
 <button class="fab" id="fab-btn" onclick="openAddExo()" aria-label="Ajouter un exercice" style="display:none;">+</button>
 
 <!-- SHEET AJOUT EXERCICE -->
-<div class="overlay" id="overlay-add">
+<div class="overlay" id="overlay-add" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="sheet">
     <div class="sheet-handle"></div>
     <h2>Nouvel exercice</h2>
@@ -641,33 +655,86 @@
   </div>
 </div>
 
+<!-- OVERLAY DÉTAIL SÉANCE -->
+<div class="overlay" id="overlay-seance-detail" onclick="if(event.target===this)this.classList.remove('open')"">
+  <div class="sheet" style="max-height:90vh;overflow-y:auto;">
+    <div class="sheet-handle"></div>
+    <div id="seance-detail-content"></div>
+    <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+      <button class="btn-green" style="flex:2;padding:13px;font-size:14px;border-radius:12px;" id="seance-detail-launch">▶ Lancer</button>
+      <button class="btn-edit" style="flex:1;" id="seance-detail-edit">✏️ Modifier</button>
+      <button class="btn-cancel" style="width:100%;margin-top:4px;" onclick="document.getElementById('overlay-seance-detail').classList.remove('open')">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- PICK FICHE OVERLAY -->
+<div class="overlay" id="overlay-pick-fiche" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="sheet" style="max-height:90vh;overflow-y:auto;">
+    <div class="sheet-handle"></div>
+    <div id="pick-fiche-content"></div>
+    <div style="display:flex;gap:10px;margin-top:12px;">
+      <button class="btn-cancel" style="flex:1;" onclick="document.getElementById('overlay-pick-fiche').classList.remove('open');document.getElementById('overlay-pick-exo').classList.add('open')">← Retour</button>
+      <button class="btn-save" style="flex:2;" id="pick-fiche-add-btn">+ Ajouter à la séance</button>
+    </div>
+  </div>
+</div>
+
 <!-- PICK EXO OVERLAY -->
-<div class="overlay" id="overlay-pick-exo">
+<div class="overlay" id="overlay-pick-exo" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="sheet">
     <div class="sheet-handle"></div>
     <h2>Choisir un exercice</h2>
-    <div class="search-box" style="margin-bottom:12px;">
+    <div class="search-box" style="margin-bottom:10px;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a7a8c" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="text" id="pick-exo-search" placeholder="Rechercher..." oninput="filterPickExo()" />
     </div>
-    <div id="pick-exo-list" style="max-height:50vh;overflow-y:auto;"></div>
+    <div class="cat-pills" id="pick-cat-pills" style="margin-bottom:10px;"></div>
+    <div id="pick-exo-list" style="max-height:45vh;overflow-y:auto;"></div>
     <button class="btn-cancel" style="width:100%;margin-top:12px;" onclick="document.getElementById('overlay-pick-exo').classList.remove('open')">Annuler</button>
   </div>
 </div>
 
+<!-- OVERLAY OPTIONS DU JOUR -->
+<div class="overlay" id="overlay-day-options" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2 id="day-options-title">Ajouter une activité</h2>
+    <span id="day-options-date" style="display:none;"></span>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+      <button class="btn-save" style="padding:14px;font-size:15px;border-radius:14px;text-align:left;display:flex;align-items:center;gap:10px;" onclick="openAddActiviteFromDay()">
+        <span>🏃</span><span>Activité libre</span>
+      </button>
+      <button class="btn-cancel" style="padding:14px;font-size:15px;border-radius:14px;text-align:left;display:flex;align-items:center;gap:10px;font-weight:600;" onclick="openSavedSeanceFromDay()">
+        <span>📋</span><span>Séance enregistrée</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAY SÉANCE POUR LE JOUR -->
+<div class="overlay" id="overlay-day-seance-picker" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2>Choisir une séance</h2>
+    <div id="day-seance-picker" style="max-height:50vh;overflow-y:auto;"></div>
+    <button class="btn-cancel" style="width:100%;margin-top:12px;" onclick="document.getElementById('overlay-day-seance-picker').classList.remove('open')">Annuler</button>
+  </div>
+</div>
+
 <!-- OVERLAY DÉTAIL DU JOUR -->
-<div class="overlay" id="overlay-day-detail">
+<div class="overlay" id="overlay-day-detail" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="sheet">
     <div class="sheet-handle"></div>
     <h2 id="day-detail-title">Jeudi 10 juillet</h2>
     <div id="day-detail-content"></div>
-    <button class="btn-green" style="width:100%;margin-top:12px;padding:12px;border-radius:12px;" onclick="openAddActiviteForDay()">+ Ajouter une activité ce jour</button>
+    <button class="btn-green" style="width:100%;margin-top:12px;padding:12px;border-radius:12px;" id="day-detail-btn" onclick="openAddActiviteForDay()">+ Ajouter une activité</button>
     <button class="btn-cancel" style="width:100%;margin-top:8px;" onclick="document.getElementById('overlay-day-detail').classList.remove('open')">Fermer</button>
   </div>
 </div>
 
 <!-- OVERLAY ÉDITION ACTIVITÉ -->
-<div class="overlay" id="overlay-edit-activite">
+<div class="overlay" id="overlay-edit-activite" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="sheet">
     <div class="sheet-handle"></div>
     <h2>Modifier l'activité</h2>
@@ -700,7 +767,7 @@
 </div>
 
 <!-- OVERLAY START OPTIONS -->
-<div class="overlay" id="overlay-start-options">
+<div class="overlay" id="overlay-start-options" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="sheet">
     <div class="sheet-handle"></div>
     <h2>Démarrer une séance</h2>
@@ -716,7 +783,7 @@
 </div>
 
 <!-- OVERLAY SÉANCE ENREGISTRÉE -->
-<div class="overlay" id="overlay-saved-seance">
+<div class="overlay" id="overlay-saved-seance" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="sheet">
     <div class="sheet-handle"></div>
     <h2>Choisir une séance</h2>
@@ -726,7 +793,7 @@
 </div>
 
 <!-- OVERLAY AJOUTER ACTIVITÉ -->
-<div class="overlay" id="overlay-add-activite">
+<div class="overlay" id="overlay-add-activite" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="sheet">
     <div class="sheet-handle"></div>
     <h2>Ajouter une activité</h2>
@@ -839,6 +906,32 @@ const DEFAULT_EXERCISES = [
 ];
 
 // ── STATE ──
+// ── SUPABASE ──
+const SUPABASE_URL = 'https://pxcmtwtgcldxgelyfouj.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4Y210d3RnY2xkeGdlbHlmb3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MTk2MTMsImV4cCI6MjA5OTE5NTYxM30.OH4fngIl0esL9R7zJzxlRK7kQvNb-RQ7nSkKw8AMHEo';
+
+async function sbFetch(path, options = {}) {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    ...options,
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': options.prefer || 'return=representation',
+      ...options.headers
+    }
+  });
+  if (!res.ok) { console.error('Supabase error', res.status, await res.text()); return null; }
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
+}
+
+async function sbGet(table) { return await sbFetch(table + '?order=created_at.desc') || []; }
+async function sbInsert(table, data) { return await sbFetch(table, { method: 'POST', body: JSON.stringify(data) }); }
+async function sbUpdate(table, id, data) { return await sbFetch(table + '?id=eq.' + id, { method: 'PATCH', body: JSON.stringify(data) }); }
+async function sbDelete(table, id) { return await sbFetch(table + '?id=eq.' + id, { method: 'DELETE', prefer: 'return=minimal' }); }
+async function sbUpsert(table, data) { return await sbFetch(table, { method: 'POST', body: JSON.stringify(data), headers: { 'Prefer': 'resolution=merge-duplicates,return=representation' } }); }
+
 const DATA_VERSION = 2;
 if (parseInt(localStorage.getItem('ms_version') || '0') < DATA_VERSION) {
   localStorage.removeItem('ms_cats');
@@ -875,7 +968,7 @@ function goTab(id) {
   }
   if (id === 'historique') { renderSuivi(); setTimeout(() => renderSuivi(), 50); }
   if (id === 'accueil') { renderHomeStats(); renderHomeRecent(); }
-  if (id === 'biblio') { renderPills(); renderBiblio(); document.getElementById('biblio-list').style.display = 'block'; document.getElementById('biblio-fiche').style.display = 'none'; }
+  if (id === 'biblio') { renderPills(); renderBiblio(); document.getElementById('biblio-list').style.display = 'block'; document.getElementById('biblio-fiche').style.display = 'none'; setTimeout(()=>{ renderPills(); renderBiblio(); }, 50); }
   if (id === 'settings') renderSettings();
 }
 
@@ -1149,7 +1242,7 @@ function calcCal(cat, minutes) {
 function openFiche(id) {
   const exo = exercises.find(e => e.id === id);
   if (!exo) return;
-  const svg = SVG_EXERCISES[exo.svg] || SVG_EXERCISES.default;
+  
   const cal10 = calcCal(exo.cat, 10);
   const cal30 = calcCal(exo.cat, 30);
   const ytQuery = encodeURIComponent('comment faire ' + exo.nom + ' exercice tuto');
@@ -1163,7 +1256,7 @@ function openFiche(id) {
       <span class="fiche-title">${exo.nom}</span>
     </div>
     <span class="fiche-cat">${exo.cat}</span>
-    <div class="fiche-svg">${svg}</div>
+
     <div class="fiche-cal">
       <div class="cal-block">
         <div class="cal-val">${cal10}</div>
@@ -1366,6 +1459,19 @@ function updateCircle(pct) {
   else circle.classList.remove('urgent');
 }
 
+let cdMinVal = 5;
+let cdSecVal = 0;
+
+function changeCD(field, delta) {
+  if (field === 'min') {
+    cdMinVal = Math.max(0, Math.min(99, cdMinVal + delta));
+    document.getElementById('cd-min-display').textContent = String(cdMinVal).padStart(2,'0');
+  } else {
+    cdSecVal = (cdSecVal + delta + 60) % 60;
+    document.getElementById('cd-sec-display').textContent = String(cdSecVal).padStart(2,'0');
+  }
+}
+
 function fmtCountdown(ms) {
   const s = Math.ceil(ms / 1000);
   const m = Math.floor(s / 60);
@@ -1373,9 +1479,7 @@ function fmtCountdown(ms) {
 }
 
 function countdownStart() {
-  const min = parseInt(document.getElementById('cd-min').value) || 0;
-  const sec = parseInt(document.getElementById('cd-sec').value) || 0;
-  const total = (min * 60 + sec) * 1000;
+  const total = (cdMinVal * 60 + cdSecVal) * 1000;
   if (total <= 0) return;
   cdTotal = total;
   cdRemaining = total;
@@ -1411,10 +1515,12 @@ function countdownStart() {
 
 function countdownPauseResume() {
   if (!cdRunning && cdRemaining <= 0) return;
+  const btn = document.getElementById('cd-pause-btn');
   if (cdRunning) {
     clearInterval(cdInterval);
     cdRunning = false;
-    document.getElementById('cd-pause-btn').textContent = '▶';
+    btn.textContent = '▶';
+    btn.classList.remove('stop');
   } else {
     const startTime = Date.now();
     const startRemaining = cdRemaining;
@@ -1428,12 +1534,14 @@ function countdownPauseResume() {
         clearInterval(cdInterval);
         cdRunning = false;
         document.getElementById('countdown-display').classList.add('finished');
-        document.getElementById('cd-pause-btn').textContent = '▶';
+        btn.textContent = '▶';
+        btn.classList.remove('stop');
         if ('vibrate' in navigator) navigator.vibrate([300, 100, 300]);
       }
     }, 100);
     cdRunning = true;
-    document.getElementById('cd-pause-btn').textContent = '⏸';
+    btn.textContent = '⏸';
+    btn.classList.add('stop');
   }
 }
 
@@ -1461,36 +1569,116 @@ function countdownStop() {
   document.getElementById('countdown-running').style.display = 'none';
   document.getElementById('countdown-setup').style.display = 'block';
   document.getElementById('cd-pause-btn').textContent = '⏸';
+  document.getElementById('cd-pause-btn').classList.add('stop');
 }
 
 // ── SÉANCES ──
-let seances = JSON.parse(localStorage.getItem('ms_seances') || '[]');
+let seances = [];
 let editingSeance = null;
 let circuits = [];
 
-function saveSeances() { localStorage.setItem('ms_seances', JSON.stringify(seances)); }
+async function loadSeances() {
+  const rows = await sbGet('seances');
+  seances = (rows || []).map(r => ({ ...r.data, id: r.id, fav: r.fav, _dbid: r.id }));
+}
+
+async function saveSeances() {
+  // handled per operation
+}
+
+async function saveSeanceToDb(seance) {
+  const row = { nom: seance.nom, data: seance, fav: seance.fav || false };
+  if (seance._dbid) {
+    await sbUpdate('seances', seance._dbid, row);
+  } else {
+    const res = await sbInsert('seances', row);
+    if (res && res[0]) seance._dbid = res[0].id;
+  }
+}
+
+async function deleteSeanceFromDb(dbid) {
+  await sbDelete('seances', dbid);
+}
 
 function renderSeancesList() {
   const cards = document.getElementById('seances-cards');
   const empty = document.getElementById('seances-empty');
-  if (!seances.length) { empty.style.display = 'block'; cards.innerHTML = ''; return; }
-  empty.style.display = 'none';
-  cards.innerHTML = seances.map((s, i) => {
-    const meta = seanceMetaStr(s);
-    return `<div class="seance-card">
-      <div class="seance-card-header">
-        <div>
-          <div class="seance-card-nom">${s.nom}</div>
-          <div class="seance-card-meta">${meta}</div>
-        </div>
+  const q = (document.getElementById('seances-search')?.value || '').toLowerCase();
+
+  let filtered = seances.map((s, i) => ({ ...s, _i: i }));
+  if (q) filtered = filtered.filter(s => s.nom.toLowerCase().includes(q));
+
+  // Favoris en premier
+  filtered.sort((a, b) => (b.fav ? 1 : 0) - (a.fav ? 1 : 0));
+
+  if (!filtered.length) {
+    empty.style.display = seances.length ? 'none' : 'block';
+    cards.innerHTML = q ? '<p style="text-align:center;color:var(--text-muted);padding:16px 0;font-size:13px;">Aucune séance trouvée.</p>' : '';
+    return;
+  }
+  const favs = filtered.filter(s => s.fav);
+  const others = filtered.filter(s => !s.fav);
+
+  let html = '';
+  if (favs.length) {
+    html += `<div class="seances-section-title">⭐ Favoris</div>`;
+    html += favs.map(s => seanceCardHTML(s)).join('');
+  }
+  if (others.length) {
+    if (favs.length) html += `<div class="seances-section-title" style="margin-top:16px;">Autres séances</div>`;
+    html += others.map(s => seanceCardHTML(s)).join('');
+  }
+  cards.innerHTML = html;
+}
+
+function seanceCardHTML(s) {
+  const i = s._i;
+  const totalSec = calcSeanceDuration(s);
+  const m = Math.floor(totalSec / 60);
+  const sec = totalSec % 60;
+  const durStr = sec > 0 ? m + ' min ' + sec + 's' : m + ' min';
+  return `<div class="seance-card">
+    <div class="seance-card-header" style="cursor:pointer;" onclick="openSeanceDetail(${i})">
+      <div style="flex:1;min-width:0;">
+        <div class="seance-card-nom">${s.fav ? '<span style="color:#f59e0b;">★</span> ' : ''}${s.nom}</div>
+        <div class="seance-card-meta">⏱ ${durStr}</div>
       </div>
-      <div class="seance-card-btns">
-        <button class="btn-launch" onclick="launchPlayer(${i})">▶ Lancer</button>
-        <button class="btn-edit" onclick="editSeance(${i})">✏️</button>
-        <button class="btn-del-seance" onclick="deleteSeance(${i})">🗑</button>
-      </div>
-    </div>`;
-  }).join('');
+      <span style="color:var(--text-muted);font-size:18px;">›</span>
+    </div>
+    <div class="seance-card-btns">
+      <button class="btn-launch" onclick="launchPlayer(${i})">▶ Lancer</button>
+      <button class="btn-edit" onclick="editSeance(${i})" title="Modifier">✏️</button>
+      <button class="btn-fav ${s.fav ? 'active' : ''}" onclick="toggleFav(${i})" title="Favori">${s.fav ? '★' : '☆'}</button>
+      <button class="btn-del-seance" onclick="confirmDeleteSeance(${i})" title="Supprimer">🗑</button>
+    </div>
+  </div>`;
+}
+
+function calcSeanceDuration(s) {
+  let sec = 0;
+  sec += s.echaufSec || 0;
+  sec += s.recupSec || 0;
+  (s.circuits || []).forEach(c => {
+    let circuitSec = 0;
+    (c.exos || []).forEach(e => {
+      circuitSec += e.mode === 'reps' ? (e.val || 0) * 3 : (e.val || 0);
+    });
+    sec += circuitSec * (c.tours || 1);
+  });
+  return sec;
+}
+
+async function deleteSeance(i) {
+  const dbid = seances[i]._dbid;
+  seances.splice(i, 1);
+  if (dbid) await deleteSeanceFromDb(dbid);
+  renderSeancesList();
+}
+
+async function toggleFav(i) {
+  seances[i].fav = !seances[i].fav;
+  await saveSeanceToDb(seances[i]);
+  renderSeancesList();
 }
 
 function seanceMetaStr(s) {
@@ -1505,9 +1693,9 @@ function openCreateSeance() {
   editingSeance = null;
   circuits = [makeCircuit()];
   document.getElementById('seance-nom').value = '';
-  document.getElementById('echauf-min').value = 5;
+  document.getElementById('echauf-min').value = 2;
   document.getElementById('echauf-sec').value = 0;
-  document.getElementById('recup-min').value = 5;
+  document.getElementById('recup-min').value = 2;
   document.getElementById('recup-sec').value = 0;
   document.getElementById('create-title').textContent = 'Nouvelle séance';
   renderCircuits();
@@ -1539,11 +1727,7 @@ function cancelCreateSeance() {
   document.getElementById('seances-list').style.display = 'block';
 }
 
-function renderSeanceType() {
-  const type = document.getElementById('seance-type').value;
-  document.getElementById('seance-structuree').style.display = type === 'structuree' ? 'block' : 'none';
-  document.getElementById('seance-libre').style.display = type === 'libre' ? 'block' : 'none';
-}
+function renderSeanceType() { }
 
 // CIRCUITS
 function makeCircuit() {
@@ -1589,7 +1773,7 @@ function renderCircuits() {
         ${c.exos.map((e, ei) => renderExoRow(ci, ei, e)).join('')}
       </div>
       <button class="btn-add-exo" onclick="openPickExo(${ci})">+ Ajouter un exercice</button>
-      <button class="btn-add-exo" onclick="addPause(${ci})">+ Ajouter une pause</button>
+      <button class="btn-add-exo" onclick="addPause(${ci})">+ Ajouter une récupération</button>
       <div class="tours-counter">
         <button class="tours-btn" onclick="changeTours(${ci},-1)" aria-label="Moins"><span>−</span></button>
         <div class="tours-display">
@@ -1607,7 +1791,7 @@ function renderExoRow(ci, ei, e) {
   if (e.isPause) {
     return `<div class="circuit-exo-row" style="background:#eff6ff;border-color:#bfdbfe;">
       <div class="circuit-exo-top">
-        <span class="circuit-exo-nom" style="color:#1e3a8a;">⏸ Pause</span>
+        <span class="circuit-exo-nom" style="color:#1e3a8a;">Récupération</span>
         <button class="btn-del-exo" onclick="removeExo(${ci},${ei})">✕</button>
       </div>
       <div class="circuit-exo-params">
@@ -1620,7 +1804,7 @@ function renderExoRow(ci, ei, e) {
   const isTimed = e.mode === 'temps';
   return `<div class="circuit-exo-row">
     <div class="circuit-exo-top">
-      <span class="circuit-exo-nom">${e.nom}</span>
+      <span class="circuit-exo-nom">${e.nom} <span style="font-style:italic;font-weight:400;color:var(--text-muted);font-size:12px;">(${exercises.find(x=>x.nom===e.nom)?.cat||''})</span></span>
       <button class="btn-del-exo" onclick="removeExo(${ci},${ei})">✕</button>
     </div>
     <div class="circuit-exo-params">
@@ -1657,24 +1841,80 @@ function removeExo(ci, ei) {
   renderCircuits();
 }
 
-// PICK EXO OVERLAY
+let pickActiveCat = 'Tout';
 let pickingCircuit = -1;
+
 function openPickExo(ci) {
   pickingCircuit = ci;
-  const all = exercises.map(e =>
-    `<div class="exo-row" onclick="addExoToCircuit('${e.nom.replace(/'/g,"\\'")}')">
-      <div><div class="exo-name">${e.nom}</div><div class="exo-meta">${e.cat}</div></div>
-      <span class="exo-arrow">+</span>
-    </div>`).join('');
-  document.getElementById('pick-exo-list').innerHTML = all;
+  pickActiveCat = 'Tout';
   document.getElementById('pick-exo-search').value = '';
+  renderPickCatPills();
+  renderPickExoList();
   document.getElementById('overlay-pick-exo').classList.add('open');
 }
 
-function filterPickExo() {
+function renderPickCatPills() {
+  const pills = document.getElementById('pick-cat-pills');
+  const all = ['Tout', ...categories];
+  pills.innerHTML = all.map(c =>
+    `<button class="cat-pill ${c === pickActiveCat ? 'active' : 'inactive'}" onclick="setPickCat('${c}')">${c}</button>`
+  ).join('');
+}
+
+function setPickCat(cat) {
+  pickActiveCat = cat;
+  renderPickCatPills();
+  renderPickExoList();
+}
+
+function renderPickExoList() {
   const q = document.getElementById('pick-exo-search').value.toLowerCase();
-  const rows = document.querySelectorAll('#pick-exo-list .exo-row');
-  rows.forEach(r => { r.style.display = r.textContent.toLowerCase().includes(q) ? 'flex' : 'none'; });
+  const filtered = exercises.filter(e => {
+    const matchCat = pickActiveCat === 'Tout' || e.cat === pickActiveCat;
+    const matchQ = !q || e.nom.toLowerCase().includes(q) || e.cat.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+  document.getElementById('pick-exo-list').innerHTML = filtered.map(e =>
+    `<div class="exo-row" style="gap:8px;">
+      <div style="flex:1;min-width:0;cursor:pointer;" onclick="openPickFiche(${e.id})">
+        <div class="exo-name">${e.nom}</div>
+        <div class="exo-meta">${e.cat}</div>
+      </div>
+      <button class="btn-pick-add" onclick="addExoToCircuit('${e.nom.replace(/'/g,"\\'")}')">+</button>
+    </div>`
+  ).join('') || '<p style="text-align:center;color:var(--text-muted);padding:16px 0;font-size:13px;">Aucun exercice trouvé.</p>';
+}
+
+function filterPickExo() {
+  renderPickExoList();
+}
+
+function openPickFiche(id) {
+  const exo = exercises.find(e => e.id === id);
+  if (!exo) return;
+  
+  const cal10 = calcCal(exo.cat, 10);
+  const cal30 = calcCal(exo.cat, 30);
+  document.getElementById('pick-fiche-content').innerHTML = `
+    <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px;">${exo.nom}</div>
+    <span class="fiche-cat">${exo.cat}</span>
+
+    <div class="fiche-cal">
+      <div class="cal-block"><div class="cal-val">${cal10}</div><div class="cal-lbl">kcal / 10 min</div></div>
+      <div class="cal-sep"></div>
+      <div class="cal-block"><div class="cal-val">${cal30}</div><div class="cal-lbl">kcal / 30 min</div></div>
+      <div class="cal-note">Estimation pour ${USER.poids}kg</div>
+    </div>
+    <div class="fiche-desc"><h3>Description</h3><p>${exo.desc}</p></div>
+    <div class="fiche-desc"><h3>Conseils</h3><ul class="fiche-tips">${(exo.tips||[]).map(t=>`<li>${t}</li>`).join('')}</ul></div>
+  `;
+  document.getElementById('pick-fiche-add-btn').onclick = () => {
+    addExoToCircuit(exo.nom);
+    document.getElementById('overlay-pick-fiche').classList.remove('open');
+    document.getElementById('overlay-pick-exo').classList.remove('open');
+  };
+  document.getElementById('overlay-pick-exo').classList.remove('open');
+  document.getElementById('overlay-pick-fiche').classList.add('open');
 }
 
 function addExoToCircuit(nom) {
@@ -1683,7 +1923,7 @@ function addExoToCircuit(nom) {
   renderCircuits();
 }
 
-function saveSeance() {
+async function saveSeance() {
   const nom = document.getElementById('seance-nom').value.trim() || 'Séance sans nom';
   const echaufSec = (parseInt(document.getElementById('echauf-min').value) || 0) * 60 + (parseInt(document.getElementById('echauf-sec').value) || 0);
   const recupSec = (parseInt(document.getElementById('recup-min').value) || 0) * 60 + (parseInt(document.getElementById('recup-sec').value) || 0);
@@ -1696,19 +1936,59 @@ function saveSeance() {
     recup: recupSec > 0,
     recupSec,
     recupMin: recupSec / 60,
-    circuits: JSON.parse(JSON.stringify(circuits))
+    circuits: JSON.parse(JSON.stringify(circuits)),
+    fav: false
   };
-  if (editingSeance !== null) seances[editingSeance] = seance;
-  else seances.push(seance);
-  saveSeances();
+  if (editingSeance !== null) {
+    seance._dbid = seances[editingSeance]._dbid;
+    seance.fav = seances[editingSeance].fav || false;
+    seances[editingSeance] = seance;
+    await saveSeanceToDb(seance);
+  } else {
+    seances.push(seance);
+    await saveSeanceToDb(seance);
+  }
   cancelCreateSeance();
   renderSeancesList();
 }
 
-function deleteSeance(i) {
+function openSeanceDetail(i) {
+  const s = seances[i];
+  let html = `<div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;">${s.nom}</div>`;
+  html += `<div style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">${seanceMetaStr(s)}</div>`;
+  if (s.echauf) html += `<div class="bloc-card echauf" style="margin-bottom:8px;"><div class="bloc-header"><span class="bloc-num">1</span><span class="bloc-label">Échauffement</span></div><div style="font-size:14px;color:#c2410c;">${Math.floor((s.echaufSec||0)/60)}min ${(s.echaufSec||0)%60}s</div></div>`;
+  (s.circuits||[]).forEach((c, ci) => {
+    html += `<div class="circuit-card" style="margin-bottom:8px;">
+      <div class="circuit-header"><span class="bloc-num" style="background:#7c3aed;color:#fff;">2.${ci+1}</span><span style="font-size:14px;font-weight:700;color:#4c1d95;margin-left:4px;">${c.nom}</span><span style="margin-left:auto;font-size:12px;color:#7c3aed;">${c.tours} répétition${c.tours>1?'s':''}</span></div>
+      ${c.exos.map(e => e.isPause
+        ? `<div style="background:#eff6ff;border-radius:8px;padding:8px 10px;margin-bottom:4px;font-size:13px;color:#1e3a8a;">Récupération · ${e.val}s</div>`
+        : `<div style="background:#f5f3ff;border-radius:8px;padding:8px 10px;margin-bottom:4px;display:flex;justify-content:space-between;"><span style="font-size:13px;font-weight:600;color:#4c1d95;">💪 ${e.nom}</span><span style="font-size:12px;color:#7c3aed;">${e.val} ${e.mode==='temps'?'sec':'reps'}</span></div>`
+      ).join('')}
+    </div>`;
+  });
+  if (s.recup) html += `<div class="bloc-card recup" style="margin-bottom:8px;"><div class="bloc-header"><span class="bloc-num">3</span><span class="bloc-label">Récupération</span></div><div style="font-size:14px;color:#15803d;">${Math.floor((s.recupSec||0)/60)}min ${(s.recupSec||0)%60}s</div></div>`;
+  document.getElementById('seance-detail-content').innerHTML = html;
+  document.getElementById('seance-detail-launch').onclick = () => { document.getElementById('overlay-seance-detail').classList.remove('open'); launchPlayer(i); };
+  document.getElementById('seance-detail-edit').onclick = () => { document.getElementById('overlay-seance-detail').classList.remove('open'); editSeance(i); };
+  document.getElementById('overlay-seance-detail').classList.add('open');
+}
+
+function saveAndLaunchSeance() {
+  saveSeance();
+  const i = seances.length - 1;
+  setTimeout(() => launchPlayer(i), 100);
+}
+
+function confirmDeleteSeance(i) {
+  if (!confirm('Supprimer "' + seances[i].nom + '" ?')) return;
+  deleteSeance(i);
+}
+
+async function deleteSeance(i) {
   if (!confirm('Supprimer cette séance ?')) return;
+  const dbid = seances[i]._dbid;
   seances.splice(i, 1);
-  saveSeances();
+  if (dbid) await deleteSeanceFromDb(dbid);
   renderSeancesList();
 }
 
@@ -1746,7 +2026,7 @@ function buildSteps(s) {
     for (let t = 1; t <= c.tours; t++) {
       c.exos.forEach((e) => {
         if (e.isPause) {
-          steps.push({ label: 'Pause', sub: c.nom + ` · Tour ${t}/${c.tours}`, icon: '⏸', type: 'pause', kind: 'timer', ms: e.val * 1000 });
+          steps.push({ label: 'Récupération', sub: c.nom + ` · Tour ${t}/${c.tours}`, icon: '⏸', type: 'pause', kind: 'timer', ms: e.val * 1000 });
         } else if (e.mode === 'temps') {
           steps.push({ label: e.nom, sub: `${c.nom} · Tour ${t}/${c.tours}`, icon: '💪', type: 'activite', kind: 'timer', ms: e.val * 1000 });
         } else {
@@ -1891,12 +2171,29 @@ function playerFinished() {
 
 
 // ── SUIVI ──
-let activites = JSON.parse(localStorage.getItem('ms_activites') || '[]');
+let activites = [];
 let plannings = JSON.parse(localStorage.getItem('ms_plannings') || '{}');
 let currentWeekOffset = 0;
 let selectedDayDate = null;
-function saveActivites() { localStorage.setItem('ms_activites', JSON.stringify(activites)); }
+
+async function loadActivites() {
+  const rows = await sbGet('activites');
+  activites = (rows || []).map(r => ({ ...r, _dbid: r.id }));
+}
+
+async function saveActivites() { /* handled per operation */ }
 function savePlannings() { localStorage.setItem('ms_plannings', JSON.stringify(plannings)); }
+
+async function insertActivite(a) {
+  const res = await sbInsert('activites', {
+    id: a.id, type: a.type, nom: a.nom||null, duree: a.duree, date: a.date, note: a.note||null, source: a.source
+  });
+  if (res && res[0]) a._dbid = res[0].id;
+}
+
+async function deleteActiviteFromDb(id) {
+  await sbDelete('activites', id);
+}
 
 const ACT_ICONS = { 'Course à pied':'🏃','Natation':'🏊','Vélo':'🚴','Marche':'🚶','Yoga':'🧘','Musculation':'💪','Séance':'💪','Autre':'⚡' };
 const ACT_COLORS = { 'Course à pied':'#fff7ed','Natation':'#eff6ff','Vélo':'#f0fdf4','Marche':'#f5f3ff','Yoga':'#fdf4ff','Musculation':'#fff7ed','Séance':'#f0fdf4','Autre':'#f4f4f6' };
@@ -1985,7 +2282,11 @@ function openDayDetail(date) {
   const jours=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
   const mois=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
   document.getElementById('day-detail-title').textContent = jours[d.getDay()]+' '+d.getDate()+' '+mois[d.getMonth()];
+  const today2 = new Date().toISOString().split('T')[0];
+  const isPast = date < today2;
+  const btnLabel = isPast ? '+ Ajouter une activité passée' : '+ Planifier une activité';
   renderDayDetail(date);
+  document.getElementById('day-detail-btn').textContent = btnLabel;
   document.getElementById('overlay-day-detail').classList.add('open');
 }
 
@@ -2006,10 +2307,10 @@ function renderDayDetail(date) {
   }).join('');
 }
 
-function deleteActivite(id) {
+async function deleteActivite(id) {
   if (!confirm('Supprimer cette activité ?')) return;
   activites = activites.filter(a=>a.id!==id);
-  saveActivites();
+  await deleteActiviteFromDb(id);
   renderDayDetail(selectedDayDate);
   renderSuivi();
   renderHomeStats();
@@ -2027,14 +2328,14 @@ function openEditActivite(id) {
   document.getElementById('overlay-edit-activite').classList.add('open');
 }
 
-function saveEditActivite() {
+async function saveEditActivite() {
   const id = parseInt(document.getElementById('edit-act-id').value);
   const a = activites.find(x=>x.id===id);
   if (!a) return;
   a.type = document.getElementById('edit-act-type').value;
   a.duree = (parseInt(document.getElementById('edit-act-min').value)||0)*60+(parseInt(document.getElementById('edit-act-sec').value)||0);
   a.note = document.getElementById('edit-act-note').value.trim();
-  saveActivites();
+  await sbUpdate('activites', id, { type: a.type, duree: a.duree, note: a.note });
   document.getElementById('overlay-edit-activite').classList.remove('open');
   renderDayDetail(selectedDayDate);
   renderSuivi();
@@ -2044,11 +2345,48 @@ function saveEditActivite() {
 
 function openAddActiviteForDay() {
   document.getElementById('overlay-day-detail').classList.remove('open');
+  document.getElementById('day-options-date').textContent = selectedDayDate;
+  const today2 = new Date().toISOString().split('T')[0];
+  const isPast = selectedDayDate < today2;
+  const label = isPast ? 'Activité passée' : 'Activité planifiée';
+  document.getElementById('day-options-title').textContent = label;
+  document.getElementById('overlay-day-options').classList.add('open');
+}
+
+function openAddActiviteFromDay() {
+  document.getElementById('overlay-day-options').classList.remove('open');
   document.getElementById('act-date').value = selectedDayDate;
   document.getElementById('act-min').value = 30;
   document.getElementById('act-sec').value = 0;
   document.getElementById('act-note').value = '';
   document.getElementById('overlay-add-activite').classList.add('open');
+}
+
+function openSavedSeanceFromDay() {
+  document.getElementById('overlay-day-options').classList.remove('open');
+  const el = document.getElementById('day-seance-picker');
+  if (!seances.length) {
+    el.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:16px 0;font-size:13px;">Aucune séance enregistrée.</p>';
+  } else {
+    el.innerHTML = seances.map((s, i) => `
+      <div class="exo-row" onclick="addSeanceToDay(${i})">
+        <div><div class="exo-name">${s.fav ? '★ ' : ''}${s.nom}</div><div class="exo-meta">${seanceMetaStr(s)}</div></div>
+        <span class="exo-arrow">▶</span>
+      </div>`).join('');
+  }
+  document.getElementById('overlay-day-seance-picker').classList.add('open');
+}
+
+async function addSeanceToDay(i) {
+  const s = seances[i];
+  const duree = calcSeanceDuration(s);
+  const a = { type: 'Séance', nom: s.nom, duree, date: selectedDayDate, source: 'planifié', id: Date.now() };
+  activites.unshift(a);
+  await insertActivite(a);
+  document.getElementById('overlay-day-seance-picker').classList.remove('open');
+  renderSuivi();
+  renderHomeStats();
+  renderHomeRecent();
 }
 
 function openAddActivite() {
@@ -2059,22 +2397,24 @@ function openAddActivite() {
   document.getElementById('overlay-add-activite').classList.add('open');
 }
 
-function saveActivite() {
-  const type=document.getElementById('act-type').value;
-  const duree=(parseInt(document.getElementById('act-min').value)||0)*60+(parseInt(document.getElementById('act-sec').value)||0);
-  const date=document.getElementById('act-date').value||new Date().toISOString().split('T')[0];
-  const note=document.getElementById('act-note').value.trim();
-  activites.unshift({type,duree,date,note,source:'manuel',id:Date.now()});
-  saveActivites();
+async function saveActivite() {
+  const type = document.getElementById('act-type').value;
+  const duree = (parseInt(document.getElementById('act-min').value)||0)*60+(parseInt(document.getElementById('act-sec').value)||0);
+  const date = document.getElementById('act-date').value||new Date().toISOString().split('T')[0];
+  const note = document.getElementById('act-note').value.trim();
+  const a = {type, duree, date, note, source:'manuel', id: Date.now()};
+  activites.unshift(a);
+  await insertActivite(a);
   document.getElementById('overlay-add-activite').classList.remove('open');
   renderSuivi();
   renderHomeStats();
   renderHomeRecent();
 }
 
-function recordSeanceActivite(nom, dureeSec) {
-  activites.unshift({type:'Séance',nom,duree:dureeSec,date:new Date().toISOString().split('T')[0],source:'app',id:Date.now()});
-  saveActivites();
+async function recordSeanceActivite(nom, dureeSec) {
+  const a = {type:'Séance', nom, duree:dureeSec, date:new Date().toISOString().split('T')[0], source:'app', id:Date.now()};
+  activites.unshift(a);
+  await insertActivite(a);
   renderSuivi();
   renderHomeStats();
   renderHomeRecent();
@@ -2154,9 +2494,16 @@ function openQuickSeance() {
 }
 
 // ── INIT ──
-goTab('accueil');
-renderHomeStats();
-renderHomeRecent();
+async function init() {
+  goTab('accueil');
+  await Promise.all([loadSeances(), loadActivites()]);
+  renderSeancesList();
+  renderHomeStats();
+  renderHomeRecent();
+  setTimeout(() => { renderPills(); renderBiblio(); }, 100);
+}
+
+init();
 </script>
 </body>
 </html>
