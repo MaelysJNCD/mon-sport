@@ -971,6 +971,29 @@ function save() {
   localStorage.setItem('ms_exos', JSON.stringify(exercises));
 }
 
+// ── AUDIO ──
+let audioCtx = null;
+function initAudio() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+  }
+  if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+}
+function beep(freq, dur, vol) {
+  if (!audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.frequency.value = freq;
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(vol || 0.3, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur / 1000);
+    osc.start(audioCtx.currentTime);
+    osc.stop(audioCtx.currentTime + dur / 1000);
+  } catch(e) {}
+}
+
 // ── NAVIGATION ──
 function goTab(id) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -2163,15 +2186,22 @@ function buildSteps(s) {
 function launchPlayer(i) {
   initAudio();
   const s = seances[i];
+  if (!s) { console.error('Séance introuvable index', i); return; }
   playerSteps = buildSteps(s);
+  if (!playerSteps.length) { alert('Cette séance ne contient aucun exercice.'); return; }
   playerIdx = 0;
-  document.getElementById('player-seance-nom').textContent = s.nom;
-  document.getElementById('seances-list').style.display = 'none';
-  document.getElementById('seances-player').style.display = 'block';
-  document.getElementById('fab-btn').style.display = 'none';
-  renderPlayerStepsList();
-  loadPlayerStep();
-  playerPlay();
+  // S'assurer qu'on est sur l'onglet séances
+  goTab('seances');
+  setTimeout(() => {
+    document.getElementById('seances-list').style.display = 'none';
+    document.getElementById('seances-create').style.display = 'none';
+    document.getElementById('seances-player').style.display = 'block';
+    document.getElementById('player-seance-nom').textContent = s.nom;
+    document.getElementById('fab-btn').style.display = 'none';
+    renderPlayerStepsList();
+    loadPlayerStep();
+    playerPlay();
+  }, 50);
 }
 
 function stopPlayer() {
@@ -2219,30 +2249,6 @@ function playerPlay() {
   clearInterval(playerInterval);
   let lastSecBeep = -1;
 
-// ── AUDIO ──
-let audioCtx = null;
-
-function initAudio() {
-  if (!audioCtx) {
-    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
-  }
-  if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-}
-
-function beep(freq, dur, vol) {
-  if (!audioCtx) return;
-  try {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain); gain.connect(audioCtx.destination);
-    osc.frequency.value = freq;
-    osc.type = 'sine';
-    gain.gain.setValueAtTime(vol || 0.3, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur / 1000);
-    osc.start(audioCtx.currentTime);
-    osc.stop(audioCtx.currentTime + dur / 1000);
-  } catch(e) {}
-}
 
   playerInterval = setInterval(() => {
     const elapsed = Date.now() - startTime;
@@ -2656,12 +2662,9 @@ function openSavedSeancePicker() {
 
 function launchFromHome(i) {
   document.getElementById('overlay-saved-seance').classList.remove('open');
-  goTab('seances');
-  setTimeout(() => {
-    document.getElementById('seances-list').style.display = 'none';
-    document.getElementById('seances-create').style.display = 'none';
-    launchPlayer(i);
-  }, 50);
+  document.getElementById('overlay-start-options').classList.remove('open');
+  if (!seances[i]) { alert('Séance introuvable, réessaie.'); return; }
+  launchPlayer(i);
 }
 
 function openQuickSeance() {
