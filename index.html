@@ -20,7 +20,7 @@
       --text-muted: #7a7a8c; --border: rgba(0,0,0,0.08);
       --radius: 14px; --nav-h: 68px; --header-h: 64px;
     }
-    html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); overscroll-behavior: none; }
+    html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--surface); color: var(--text); overscroll-behavior: none; }
     #app { display: flex; flex-direction: column; height: 100dvh; max-width: 480px; margin: 0 auto; background: var(--bg); box-shadow: 0 0 40px rgba(0,0,0,0.12); }
 
     /* HEADER */
@@ -35,11 +35,12 @@
 
     /* MAIN */
     main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; position: relative; }
-    .tab-content { display: none; padding: 16px; min-height: 100%; }
+    .tab-content { display: none; padding: 24px 16px 16px; min-height: 100%; }
     .tab-content.active { display: block; }
 
     /* NAV */
-    nav { background: var(--surface); border-top: 1px solid var(--border); display: flex; height: calc(var(--nav-h) + env(safe-area-inset-bottom,0)); padding-bottom: env(safe-area-inset-bottom,0); flex-shrink: 0; }
+    nav { background: var(--surface); border-top: 1px solid var(--border); display: flex; height: calc(var(--nav-h) + env(safe-area-inset-bottom,0)); padding-bottom: env(safe-area-inset-bottom,0); flex-shrink: 0; position: relative; }
+    nav::after { content: ''; position: absolute; bottom: calc(-1 * env(safe-area-inset-bottom, 0)); left: 0; right: 0; height: env(safe-area-inset-bottom, 0); background: var(--surface); }
     .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: none; background: none; cursor: pointer; padding: 4px 4px 8px; color: var(--text-muted); font-size: 10px; font-family: inherit; transition: color 0.15s; -webkit-tap-highlight-color: transparent; }
     .nav-btn svg { transition: transform 0.15s; }
     .nav-btn.active { color: var(--green); }
@@ -50,15 +51,15 @@
     .section-title { font-size: 13px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; margin-top: 4px; }
 
     /* STATS */
-    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-    .stat-card { background: var(--surface); border-radius: var(--radius); padding: 14px; border: 1px solid var(--border); }
-    .stat-card .stat-icon { font-size: 18px; margin-bottom: 8px; }
-    .stat-card .stat-val { font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
-    .stat-card .stat-lbl { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; margin-top: 8px; }
+    .stat-card { background: var(--surface); border-radius: var(--radius); padding: 20px; border: 1px solid var(--border); }
+    .stat-card .stat-icon { font-size: 22px; margin-bottom: 10px; }
+    .stat-card .stat-val { font-size: 34px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
+    .stat-card .stat-lbl { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
 
     /* QUICK START */
-    .quick-start { background: var(--navy); border-radius: var(--radius); padding: 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-    .quick-start .qs-title { font-size: 17px; font-weight: 600; color: #fff; }
+    .quick-start { background: var(--navy); border-radius: var(--radius); padding: 22px 20px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; margin-top: 4px; }
+    .quick-start .qs-title { font-size: 18px; font-weight: 600; color: #fff; }
     .quick-start .qs-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px; }
     .btn-green { background: var(--green); color: var(--green-dark); border: none; border-radius: 20px; padding: 10px 18px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
 
@@ -139,7 +140,7 @@
     .chrono-btn { border: none; cursor: pointer; font-family: inherit; font-weight: 700; -webkit-tap-highlight-color: transparent; transition: transform 0.1s; }
     .chrono-btn:active { transform: scale(0.94); }
     .chrono-btn.primary { width: 72px; height: 72px; border-radius: 50%; background: var(--green); color: var(--green-dark); font-size: 24px; }
-    .chrono-btn.primary.stop { background: #fca5a5; color: #fff; }
+    .chrono-btn.primary.stop { background: #fca5a5; color: #fff; font-size: 24px; }
     .chrono-btn.secondary { width: 52px; height: 52px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); font-size: 13px; }
     .chrono-btn.secondary:disabled { opacity: 0.35; cursor: default; }
     .laps-list { display: flex; flex-direction: column; gap: 0; }
@@ -172,6 +173,7 @@
     .seance-card-btns { display: flex; gap: 8px; margin-top: 12px; }
     .btn-launch { flex: 3; background: var(--green); color: var(--green-dark); border: none; border-radius: 10px; padding: 12px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; }
     .btn-edit { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px; font-size: 16px; cursor: pointer; font-family: inherit; text-align: center; }
+    .filter-section-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
     .seances-section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; margin-top: 4px; }
     .btn-fav { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px; font-size: 16px; cursor: pointer; color: var(--text-muted); text-align: center; }
     .btn-fav.active { background: #fef3c7; border-color: #f59e0b; color: #f59e0b; }
@@ -232,7 +234,7 @@
 
     /* PLAYER */
     .player-bloc-label { text-align: center; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 4px; }
-    .player-exo-name { text-align: center; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; min-height: 32px; }
+    .player-exo-name { text-align: center; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; min-height: 32px; text-decoration-line: underline; text-decoration-style: dotted; text-decoration-color: var(--text-muted); text-underline-offset: 4px; }
     .player-detail { text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 4px; min-height: 20px; }
     .player-next { text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; min-height: 18px; }
     .player-step-row { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 10px; margin-bottom: 5px; border-left: 4px solid transparent; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; }
@@ -433,10 +435,14 @@
     <!-- SÉANCES -->
     <div class="tab-content" id="tab-seances">
       <div id="seances-list">
-        <div class="search-box" style="margin-bottom:12px;">
+        <div class="search-box" style="margin-bottom:10px;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a7a8c" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" id="seances-search" placeholder="Rechercher une séance..." oninput="renderSeancesList()" />
         </div>
+        <div class="filter-section-lbl">Durée</div>
+        <div class="cat-pills" id="seances-duree-pills" style="margin-bottom:8px;"></div>
+        <div class="filter-section-lbl">Catégorie</div>
+        <div class="cat-pills" id="seances-cat-pills" style="margin-bottom:12px;"></div>
         <div id="seances-empty" style="display:none;">
           <div class="placeholder">
             <div class="placeholder-icon">
@@ -472,7 +478,7 @@
             </div>
             <div id="bloc-echauf-body">
               <div class="inline-row">
-                <input type="number" id="echauf-min" value="2" min="0" max="60" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
+                <input type="number" id="echauf-min" value="1" min="0" max="60" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
                 <span class="unit-lbl">min</span>
                 <input type="number" id="echauf-sec" value="0" min="0" max="59" step="15" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
                 <span class="unit-lbl">sec</span>
@@ -492,7 +498,7 @@
             </div>
             <div id="bloc-recup-body">
               <div class="inline-row">
-                <input type="number" id="recup-min" value="2" min="0" max="60" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
+                <input type="number" id="recup-min" value="1" min="0" max="60" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
                 <span class="unit-lbl">min</span>
                 <input type="number" id="recup-sec" value="0" min="0" max="59" step="15" style="width:56px;text-align:center;" oninput="updateTotalDuration()" />
                 <span class="unit-lbl">sec</span>
@@ -502,7 +508,7 @@
         </div>
 
         <div class="sheet-btns" style="margin-top:16px;">
-          <button class="btn-save" style="flex:3;" onclick="saveSeance()">Enregistrer</button>
+          <button class="btn-save" style="flex:3;" onclick="this.textContent='...';this.disabled=true;saveSeance().catch(e=>{console.error(e);this.textContent='Enregistrer';this.disabled=false;})">Enregistrer</button>
           <button class="btn-del-seance" onclick="cancelCreateSeance()">🗑</button>
         </div>
 
@@ -515,7 +521,7 @@
           <span class="fiche-title" id="player-seance-nom"></span>
         </div>
         <div class="player-bloc-label" id="player-bloc-label">Échauffement</div>
-        <div class="player-exo-name" id="player-exo-name"></div>
+        <div class="player-exo-name" id="player-exo-name" onclick="openPlayerExoFiche()" style="cursor:pointer;" title="Voir la description"></div>
         <div class="player-detail" id="player-detail"></div>
         <div class="cd-circle-wrap" style="margin:16px auto 20px;">
           <svg class="cd-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
@@ -530,9 +536,9 @@
         </div>
         <div class="player-next" id="player-next"></div>
         <div class="chrono-btns" style="margin-bottom:16px;">
-          <button class="chrono-btn secondary" onclick="playerPrev()">⏮</button>
-          <button class="chrono-btn primary" id="player-playpause" onclick="playerPlayPause()">⏸</button>
-          <button class="chrono-btn secondary" onclick="playerNext()">⏭</button>
+          <button class="chrono-btn secondary" onclick="playerPrev()" aria-label="Précédent" style="font-size:18px;">◀◀</button>
+          <button class="chrono-btn primary stop" id="player-playpause" onclick="playerPlayPause()"><span style="color:#fff;font-size:20px;font-weight:700;letter-spacing:2px;">II</span></button>
+          <button class="chrono-btn secondary" onclick="playerNext()" aria-label="Suivant" style="font-size:18px;">▶▶</button>
         </div>
         <div id="player-steps-list"></div>
       </div>
@@ -652,6 +658,15 @@
       <button class="btn-cancel" onclick="closeAdd()">Annuler</button>
       <button class="btn-save" onclick="saveExo()">Enregistrer</button>
     </div>
+  </div>
+</div>
+
+<!-- OVERLAY FICHE EXERCICE PLAYER -->
+<div class="overlay" id="overlay-player-fiche" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="sheet" style="max-height:85vh;overflow-y:auto;">
+    <div class="sheet-handle"></div>
+    <div id="player-fiche-content"></div>
+    <button class="btn-cancel" style="width:100%;margin-top:12px;" onclick="document.getElementById('overlay-player-fiche').classList.remove('open')">Fermer</button>
   </div>
 </div>
 
@@ -799,11 +814,12 @@
     <h2>Ajouter une activité</h2>
     <div class="form-row">
       <label>Type d'activité</label>
-      <select id="act-type">
+      <select id="act-type" onchange="toggleDistanceField()">
         <option>Course à pied</option>
         <option>Natation</option>
         <option>Vélo</option>
         <option>Marche</option>
+        <option>Randonnée</option>
         <option>Yoga</option>
         <option>Musculation</option>
         <option>Autre</option>
@@ -818,13 +834,20 @@
         <span style="font-size:13px;color:var(--text-muted);">sec</span>
       </div>
     </div>
+    <div class="form-row" id="act-distance-row" style="display:none;">
+      <label>Distance (optionnel)</label>
+      <div class="inline-row">
+        <input type="number" id="act-distance" value="" min="0" max="500" step="0.1" style="width:80px;text-align:center;" placeholder="0" />
+        <span style="font-size:13px;color:var(--text-muted);">km</span>
+      </div>
+    </div>
     <div class="form-row">
       <label>Date</label>
       <input type="date" id="act-date" />
     </div>
     <div class="form-row">
       <label>Note (optionnel)</label>
-      <input type="text" id="act-note" placeholder="Ex : 5km, piscine couverte..." />
+      <input type="text" id="act-note" placeholder="Ex : piscine couverte, trail..." />
     </div>
     <div class="sheet-btns">
       <button class="btn-cancel" onclick="document.getElementById('overlay-add-activite').classList.remove('open')">Annuler</button>
@@ -1384,7 +1407,7 @@ function chronoStartStop() {
   if (chronoRunning) {
     clearInterval(chronoInterval);
     chronoRunning = false;
-    document.getElementById('chrono-start-btn').textContent = '▶';
+    document.getElementById('chrono-start-btn').textContent = '▶'; document.getElementById('chrono-start-btn').classList.remove('stop');
     document.getElementById('chrono-start-btn').classList.remove('stop');
     document.getElementById('chrono-display').classList.remove('running');
   } else {
@@ -1395,7 +1418,7 @@ function chronoStartStop() {
       document.getElementById('chrono-display').textContent = fmtChrono(chronoMs);
     }, 50);
     chronoRunning = true;
-    document.getElementById('chrono-start-btn').textContent = '⏸';
+    document.getElementById('chrono-start-btn').innerHTML = '<span style="color:#fff;font-size:20px;font-weight:700;letter-spacing:2px;">II</span>';
     document.getElementById('chrono-start-btn').classList.add('stop');
     document.getElementById('chrono-display').classList.add('running');
     document.getElementById('chrono-lap-btn').disabled = false;
@@ -1420,7 +1443,7 @@ function chronoReset() {
   chronoLapStart = 0;
   document.getElementById('chrono-display').textContent = '00:00.0';
   document.getElementById('chrono-display').classList.remove('running');
-  document.getElementById('chrono-start-btn').textContent = '▶';
+  document.getElementById('chrono-start-btn').textContent = '▶'; document.getElementById('chrono-start-btn').classList.remove('stop');
   document.getElementById('chrono-start-btn').classList.remove('stop');
   document.getElementById('chrono-lap-btn').disabled = true;
   document.getElementById('chrono-laps').innerHTML = '';
@@ -1519,7 +1542,7 @@ function countdownPauseResume() {
   if (cdRunning) {
     clearInterval(cdInterval);
     cdRunning = false;
-    btn.textContent = '▶';
+    btn.innerHTML = '▶'; btn.classList.remove('stop');
     btn.classList.remove('stop');
   } else {
     const startTime = Date.now();
@@ -1534,14 +1557,14 @@ function countdownPauseResume() {
         clearInterval(cdInterval);
         cdRunning = false;
         document.getElementById('countdown-display').classList.add('finished');
-        btn.textContent = '▶';
+        btn.innerHTML = '▶'; btn.classList.remove('stop');
         btn.classList.remove('stop');
         if ('vibrate' in navigator) navigator.vibrate([300, 100, 300]);
       }
     }, 100);
     cdRunning = true;
-    btn.textContent = '⏸';
-    btn.classList.add('stop');
+  btn.innerHTML = '<span style="color:#fff;font-size:20px;font-weight:700;letter-spacing:2px;">II</span>';
+  btn.classList.add('stop');
   }
 }
 
@@ -1600,7 +1623,43 @@ async function deleteSeanceFromDb(dbid) {
   await sbDelete('seances', dbid);
 }
 
+let seanceFilterDuree = 'all';
+let seanceFilterCat = 'all';
+
+const DUREE_FILTERS = [
+  { key: 'all', label: 'Toutes' },
+  { key: '-10', label: '−10 min' },
+  { key: '-20', label: '−20 min' },
+  { key: '-30', label: '−30 min' },
+  { key: '+30', label: '+30 min' }
+];
+
+function renderSeancesFilters() {
+  // Durée pills
+  const dp = document.getElementById('seances-duree-pills');
+  if (dp) dp.innerHTML = DUREE_FILTERS.map(f =>
+    `<button class="cat-pill ${seanceFilterDuree === f.key ? 'active' : 'inactive'}" onclick="setSeanceDuree('${f.key}')">${f.label}</button>`
+  ).join('');
+
+  // Catégorie pills — calculées dynamiquement depuis les séances
+  const cats = new Set();
+  seances.forEach(s => (s.circuits||[]).forEach(c => c.exos.forEach(e => {
+    if (!e.isPause) {
+      const exo = exercises.find(x => x.nom === e.nom);
+      if (exo) cats.add(exo.cat);
+    }
+  })));
+  const cp = document.getElementById('seances-cat-pills');
+  if (cp) cp.innerHTML = ['all', ...cats].map(c =>
+    `<button class="cat-pill ${seanceFilterCat === c ? 'active' : 'inactive'}" onclick="setSeanceCat('${c}')">${c === 'all' ? 'Toutes' : c}</button>`
+  ).join('');
+}
+
+function setSeanceDuree(key) { seanceFilterDuree = key; renderSeancesFilters(); renderSeancesList(); }
+function setSeanceCat(cat) { seanceFilterCat = cat; renderSeancesFilters(); renderSeancesList(); }
+
 function renderSeancesList() {
+  renderSeancesFilters();
   const cards = document.getElementById('seances-cards');
   const empty = document.getElementById('seances-empty');
   const q = (document.getElementById('seances-search')?.value || '').toLowerCase();
@@ -1608,12 +1667,39 @@ function renderSeancesList() {
   let filtered = seances.map((s, i) => ({ ...s, _i: i }));
   if (q) filtered = filtered.filter(s => s.nom.toLowerCase().includes(q));
 
+  // Filtre durée
+  if (seanceFilterDuree !== 'all') {
+    filtered = filtered.filter(s => {
+      const min = calcSeanceDuration(s) / 60;
+      if (seanceFilterDuree === '-10') return min < 10;
+      if (seanceFilterDuree === '-20') return min < 20;
+      if (seanceFilterDuree === '-30') return min < 30;
+      if (seanceFilterDuree === '+30') return min >= 30;
+      return true;
+    });
+  }
+
+  // Filtre catégorie
+  if (seanceFilterCat !== 'all') {
+    filtered = filtered.filter(s =>
+      (s.circuits||[]).some(c => c.exos.some(e => {
+        if (e.isPause) return false;
+        const exo = exercises.find(x => x.nom === e.nom);
+        return exo && exo.cat === seanceFilterCat;
+      }))
+    );
+  }
+
   // Favoris en premier
   filtered.sort((a, b) => (b.fav ? 1 : 0) - (a.fav ? 1 : 0));
 
   if (!filtered.length) {
-    empty.style.display = seances.length ? 'none' : 'block';
-    cards.innerHTML = q ? '<p style="text-align:center;color:var(--text-muted);padding:16px 0;font-size:13px;">Aucune séance trouvée.</p>' : '';
+    empty.style.display = 'none';
+    if (!seances.length) {
+      cards.innerHTML = '<div style="text-align:center;padding:32px 16px;"><div style="font-size:40px;margin-bottom:12px;">🏋️</div><p style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px;">Aucune séance pour l\'instant</p><p style="font-size:13px;color:var(--text-muted);">Crée ta première séance avec le bouton ci-dessous !</p></div>';
+    } else {
+      cards.innerHTML = '<div style="text-align:center;padding:24px 16px;"><p style="font-size:13px;color:var(--text-muted);">Aucune séance ne correspond à ces filtres.</p></div>';
+    }
     return;
   }
   const favs = filtered.filter(s => s.fav);
@@ -1693,9 +1779,9 @@ function openCreateSeance() {
   editingSeance = null;
   circuits = [makeCircuit()];
   document.getElementById('seance-nom').value = '';
-  document.getElementById('echauf-min').value = 2;
+  document.getElementById("echauf-min").value = 1;
   document.getElementById('echauf-sec').value = 0;
-  document.getElementById('recup-min').value = 2;
+  document.getElementById("recup-min").value = 1;
   document.getElementById('recup-sec').value = 0;
   document.getElementById('create-title').textContent = 'Nouvelle séance';
   renderCircuits();
@@ -1821,7 +1907,7 @@ function renderExoRow(ci, ei, e) {
 }
 
 function addPause(ci) {
-  circuits[ci].exos.push({ nom: 'Pause', mode: 'temps', val: 30, pauseSec: 0, isPause: true });
+  circuits[ci].exos.push({ nom: 'Pause', mode: 'temps', val: 15, pauseSec: 0, isPause: true });
   renderCircuits();
 }
 
@@ -1889,10 +1975,37 @@ function filterPickExo() {
   renderPickExoList();
 }
 
+function openPlayerExoFiche() {
+  const step = playerSteps[playerIdx];
+  if (!step || step.kind === 'reps' && step.type !== 'activite') return;
+  const nomExo = step.label;
+  const exo = exercises.find(e => e.nom === nomExo);
+  if (!exo) return;
+  const cal10 = calcCal(exo.cat, 10);
+  const cal30 = calcCal(exo.cat, 30);
+  const ytQuery = encodeURIComponent('comment faire ' + exo.nom + ' exercice tuto');
+  document.getElementById('player-fiche-content').innerHTML = `
+    <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;">${exo.nom}</div>
+    <span class="fiche-cat">${exo.cat}</span>
+    <div class="fiche-cal" style="margin-top:12px;">
+      <div class="cal-block"><div class="cal-val">${cal10}</div><div class="cal-lbl">kcal / 10 min</div></div>
+      <div class="cal-sep"></div>
+      <div class="cal-block"><div class="cal-val">${cal30}</div><div class="cal-lbl">kcal / 30 min</div></div>
+      <div class="cal-note">Estimation pour ${USER.poids}kg</div>
+    </div>
+    <div class="fiche-desc" style="margin-top:12px;"><h3>Description</h3><p>${exo.desc}</p></div>
+    <div class="fiche-desc"><h3>Conseils</h3><ul class="fiche-tips">${(exo.tips||[]).map(t=>`<li>${t}</li>`).join('')}</ul></div>
+    <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="btn-youtube" style="margin-top:8px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75 12.64 12.64 0 0 0-8.07 0A4.83 4.83 0 0 1 4.41 6.69 49.68 49.68 0 0 0 4 12a49.68 49.68 0 0 0 .41 5.31 4.83 4.83 0 0 1 3.34 2.75 12.64 12.64 0 0 0 8.07 0 4.83 4.83 0 0 1 3.77-2.75A49.68 49.68 0 0 0 20 12a49.68 49.68 0 0 0-.41-5.31zM10 15V9l5 3-5 3z"/></svg>
+      Voir la démo sur YouTube
+    </a>
+  `;
+  document.getElementById('overlay-player-fiche').classList.add('open');
+}
+
 function openPickFiche(id) {
   const exo = exercises.find(e => e.id === id);
   if (!exo) return;
-  
   const cal10 = calcCal(exo.cat, 10);
   const cal30 = calcCal(exo.cat, 30);
   document.getElementById('pick-fiche-content').innerHTML = `
@@ -2026,7 +2139,7 @@ function buildSteps(s) {
     for (let t = 1; t <= c.tours; t++) {
       c.exos.forEach((e) => {
         if (e.isPause) {
-          steps.push({ label: 'Récupération', sub: c.nom + ` · Tour ${t}/${c.tours}`, icon: '⏸', type: 'pause', kind: 'timer', ms: e.val * 1000 });
+          steps.push({ label: 'Récupération', sub: c.nom + ` · Tour ${t}/${c.tours}`, icon: '🧘', type: 'pause', kind: 'timer', ms: e.val * 1000 });
         } else if (e.mode === 'temps') {
           steps.push({ label: e.nom, sub: `${c.nom} · Tour ${t}/${c.tours}`, icon: '💪', type: 'activite', kind: 'timer', ms: e.val * 1000 });
         } else {
@@ -2034,7 +2147,7 @@ function buildSteps(s) {
         }
       });
       if (t < c.tours && c.pauseSec > 0)
-        steps.push({ label: 'Pause entre tours', sub: c.nom, icon: '⏸', type: 'pause', kind: 'timer', ms: c.pauseSec * 1000 });
+        steps.push({ label: 'Pause entre tours', sub: c.nom, icon: '🧘', type: 'pause', kind: 'timer', ms: c.pauseSec * 1000 });
     }
   });
   if (s.recup) steps.push({ label: 'Récupération', icon: '🧘', type: 'recup', kind: 'timer', ms: (s.recupSec || s.recupMin * 60) * 1000 });
@@ -2042,6 +2155,7 @@ function buildSteps(s) {
 }
 
 function launchPlayer(i) {
+  initAudio();
   const s = seances[i];
   playerSteps = buildSteps(s);
   playerIdx = 0;
@@ -2075,14 +2189,14 @@ function loadPlayerStep() {
     updatePlayerCircle(100, step.type);
     clearInterval(playerInterval);
     playerRunning = false;
-    document.getElementById('player-playpause').textContent = '⏭';
+    document.getElementById('player-playpause').innerHTML = '<span style="color:#fff;font-size:20px;font-weight:700;">▶▶</span>'; document.getElementById('player-playpause').classList.remove('stop');
   } else {
     playerMs = step.ms;
     playerTotal = step.ms;
     document.getElementById('player-time').textContent = fmtCountdown(playerMs);
     document.getElementById('player-detail').textContent = '';
     updatePlayerCircle(100, step.type);
-    document.getElementById('player-playpause').textContent = '⏸';
+    document.getElementById('player-playpause').innerHTML = '<span style="color:#fff;font-size:20px;font-weight:700;letter-spacing:2px;">II</span>'; document.getElementById('player-playpause').classList.add('stop');
   }
   const next = playerSteps[playerIdx + 1];
   document.getElementById('player-next').textContent = next ? '→ ' + (next.sub ? next.label + ' · ' + next.sub : next.label) : '';
@@ -2095,22 +2209,34 @@ function playerPlay() {
   const startTime = Date.now();
   const startMs = playerMs;
   playerRunning = true;
-  document.getElementById('player-playpause').textContent = '⏸';
+  document.getElementById('player-playpause').innerHTML = '<span style="color:#fff;font-size:20px;font-weight:700;letter-spacing:2px;">II</span>'; document.getElementById('player-playpause').classList.add('stop');
   clearInterval(playerInterval);
   let lastSecBeep = -1;
 
-  function beep(freq, dur) {
-    try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain); gain.connect(ctx.destination);
-      osc.frequency.value = freq;
-      gain.gain.setValueAtTime(0.3, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur/1000);
-      osc.start(); osc.stop(ctx.currentTime + dur/1000);
-    } catch(e) {}
+// ── AUDIO ──
+let audioCtx = null;
+
+function initAudio() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
   }
+  if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function beep(freq, dur, vol) {
+  if (!audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.frequency.value = freq;
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(vol || 0.3, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur / 1000);
+    osc.start(audioCtx.currentTime);
+    osc.stop(audioCtx.currentTime + dur / 1000);
+  } catch(e) {}
+}
 
   playerInterval = setInterval(() => {
     const elapsed = Date.now() - startTime;
@@ -2123,15 +2249,15 @@ function playerPlay() {
     const secLeft = Math.ceil(playerMs / 1000);
     if (secLeft <= 5 && secLeft > 0 && secLeft !== lastSecBeep) {
       lastSecBeep = secLeft;
-      beep(880, 80);
+      beep(880, 120, 0.25);
       if ('vibrate' in navigator) navigator.vibrate(60);
     }
 
     if (playerMs <= 0) {
       clearInterval(playerInterval);
       playerRunning = false;
-      beep(440, 400);
-      if ('vibrate' in navigator) navigator.vibrate([200, 100, 200]);
+      beep(660, 500, 0.4);
+      if ('vibrate' in navigator) navigator.vibrate([200, 80, 200]);
       setTimeout(playerNext, 800);
     }
   }, 100);
@@ -2167,7 +2293,7 @@ function renderPlayerStepsList() {
 
 function playerPlayPause() {
   if (playerIsReps) { playerNext(); return; }
-  if (playerRunning) { clearInterval(playerInterval); playerRunning = false; document.getElementById('player-playpause').textContent = '▶'; }
+  if (playerRunning) { clearInterval(playerInterval); playerRunning = false; document.getElementById('player-playpause').innerHTML = '▶'; document.getElementById('player-playpause').classList.remove('stop'); }
   else { playerPlay(); }
 }
 
@@ -2225,9 +2351,16 @@ async function deleteActiviteFromDb(id) {
   await sbDelete('activites', id);
 }
 
-const ACT_ICONS = { 'Course à pied':'🏃','Natation':'🏊','Vélo':'🚴','Marche':'🚶','Yoga':'🧘','Musculation':'💪','Séance':'💪','Autre':'⚡' };
-const ACT_COLORS = { 'Course à pied':'#fff7ed','Natation':'#eff6ff','Vélo':'#f0fdf4','Marche':'#f5f3ff','Yoga':'#fdf4ff','Musculation':'#fff7ed','Séance':'#f0fdf4','Autre':'#f4f4f6' };
-const ACT_MET = { 'Course à pied':8.0,'Natation':6.0,'Vélo':6.5,'Marche':3.5,'Yoga':2.5,'Musculation':4.0,'Séance':4.0,'Autre':4.0 };
+const ACT_ICONS = { 'Course à pied':'🏃','Natation':'🏊','Vélo':'🚴','Marche':'🚶','Randonnée':'🥾','Yoga':'🧘','Musculation':'💪','Séance':'💪','Autre':'⚡' };
+const ACT_COLORS = { 'Course à pied':'#fff7ed','Natation':'#eff6ff','Vélo':'#f0fdf4','Marche':'#f5f3ff','Randonnée':'#fef3c7','Yoga':'#fdf4ff','Musculation':'#fff7ed','Séance':'#f0fdf4','Autre':'#f4f4f6' };
+const ACT_MET = { 'Course à pied':8.0,'Natation':6.0,'Vélo':6.5,'Marche':3.5,'Randonnée':5.0,'Yoga':2.5,'Musculation':4.0,'Séance':4.0,'Autre':4.0 };
+const ACT_WITH_DISTANCE = ['Course à pied','Vélo','Marche','Randonnée'];
+
+function toggleDistanceField() {
+  const type = document.getElementById('act-type')?.value;
+  const row = document.getElementById('act-distance-row');
+  if (row) row.style.display = ACT_WITH_DISTANCE.includes(type) ? 'block' : 'none';
+}
 
 function calcKcal(type, duree) {
   return Math.round((ACT_MET[type]||4.0) * 63 * (duree/3600));
@@ -2298,9 +2431,10 @@ function renderSuivi() {
   if (!activites.length) { hist.innerHTML='<div style="text-align:center;color:var(--text-muted);padding:20px 0;font-size:13px;">Aucune activité enregistrée.</div>'; return; }
   hist.innerHTML = activites.map(a=>{
     const icon=ACT_ICONS[a.type]||'⚡', bg=ACT_COLORS[a.type]||'#f4f4f6', label=a.nom||a.type, kcal=calcKcal(a.type,a.duree||0);
+    const distStr = a.distance ? ` · ${a.distance} km` : '';
     return `<div class="suivi-history-row">
       <div class="suivi-icon" style="background:${bg}">${icon}</div>
-      <div style="flex:1;min-width:0;"><div class="suivi-name">${label}</div><div class="suivi-meta">${fmtDuration(a.duree||0)}${a.note?' · '+a.note:''}</div></div>
+      <div style="flex:1;min-width:0;"><div class="suivi-name">${label}</div><div class="suivi-meta">${fmtDuration(a.duree||0)}${distStr}${a.note?' · '+a.note:''}</div></div>
       <div class="suivi-right"><div class="suivi-kcal">${kcal} kcal</div><div class="suivi-date">${fmtDate(a.date)}</div></div>
     </div>`;
   }).join('');
@@ -2388,7 +2522,7 @@ function openAddActiviteFromDay() {
   document.getElementById('act-date').value = selectedDayDate;
   document.getElementById('act-min').value = 30;
   document.getElementById('act-sec').value = 0;
-  document.getElementById('act-note').value = '';
+  document.getElementById('act-note').value = ''; if(document.getElementById('act-distance')) document.getElementById('act-distance').value = ''; toggleDistanceField();
   document.getElementById('overlay-add-activite').classList.add('open');
 }
 
@@ -2423,7 +2557,7 @@ function openAddActivite() {
   document.getElementById('act-date').value = new Date().toISOString().split('T')[0];
   document.getElementById('act-min').value = 30;
   document.getElementById('act-sec').value = 0;
-  document.getElementById('act-note').value = '';
+  document.getElementById('act-note').value = ''; if(document.getElementById('act-distance')) document.getElementById('act-distance').value = ''; toggleDistanceField();
   document.getElementById('overlay-add-activite').classList.add('open');
 }
 
@@ -2432,7 +2566,9 @@ async function saveActivite() {
   const duree = (parseInt(document.getElementById('act-min').value)||0)*60+(parseInt(document.getElementById('act-sec').value)||0);
   const date = document.getElementById('act-date').value||new Date().toISOString().split('T')[0];
   const note = document.getElementById('act-note').value.trim();
-  const a = {type, duree, date, note, source:'manuel', id: Date.now()};
+  const distVal = parseFloat(document.getElementById('act-distance')?.value);
+  const distance = (!isNaN(distVal) && distVal > 0) ? distVal : null;
+  const a = {type, duree, date, note, distance, source:'manuel', id: Date.now()};
   activites.unshift(a);
   await insertActivite(a);
   document.getElementById('overlay-add-activite').classList.remove('open');
