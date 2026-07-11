@@ -423,7 +423,7 @@
           </div>
           <div class="chrono-btns">
             <button class="chrono-btn secondary" id="cd-lap-btn" onclick="countdownLap()">Tour</button>
-            <button class="chrono-btn primary stop" id="cd-pause-btn" onclick="countdownPauseResume()">⏸</button>
+            <button class="chrono-btn primary stop" id="cd-pause-btn" onclick="countdownPauseResume()"><span style="color:#fff;font-size:20px;font-weight:700;letter-spacing:2px;">II</span></button>
             <button class="chrono-btn secondary" onclick="countdownStop()">↺</button>
           </div>
           <div id="countdown-laps"></div>
@@ -1530,7 +1530,7 @@ function countdownStart() {
       cdRunning = false;
       document.getElementById('countdown-display').classList.add('finished');
       document.getElementById('countdown-display').textContent = '00:00';
-      document.getElementById('cd-pause-btn').textContent = '▶';
+      document.getElementById('cd-pause-btn').innerHTML = '▶'; document.getElementById('cd-pause-btn').classList.remove('stop');
       if ('vibrate' in navigator) navigator.vibrate([300, 100, 300]);
     }
   }, 100);
@@ -1591,7 +1591,7 @@ function countdownStop() {
   cdRemaining = 0;
   document.getElementById('countdown-running').style.display = 'none';
   document.getElementById('countdown-setup').style.display = 'block';
-  document.getElementById('cd-pause-btn').textContent = '⏸';
+  document.getElementById('cd-pause-btn').innerHTML = '<span style="color:#fff;font-size:20px;font-weight:700;letter-spacing:2px;">II</span>';
   document.getElementById('cd-pause-btn').classList.add('stop');
 }
 
@@ -1602,7 +1602,13 @@ let circuits = [];
 
 async function loadSeances() {
   const rows = await sbGet('seances');
-  seances = (rows || []).map(r => ({ ...r.data, id: r.id, fav: r.fav, _dbid: r.id }));
+  seances = (rows || []).map(r => ({
+    ...(r.data || {}),
+    nom: r.nom || r.data?.nom || 'Séance',
+    fav: r.fav || false,
+    _dbid: r.id,
+    circuits: r.data?.circuits || []
+  }));
 }
 
 async function saveSeances() {
@@ -1690,7 +1696,7 @@ function renderSeancesList() {
     );
   }
 
-  // Favoris en premier
+  // Favoris en premier — on garde _i intact pour pointer vers seances[]
   filtered.sort((a, b) => (b.fav ? 1 : 0) - (a.fav ? 1 : 0));
 
   if (!filtered.length) {
@@ -2651,7 +2657,11 @@ function openSavedSeancePicker() {
 function launchFromHome(i) {
   document.getElementById('overlay-saved-seance').classList.remove('open');
   goTab('seances');
-  setTimeout(() => launchPlayer(i), 100);
+  setTimeout(() => {
+    document.getElementById('seances-list').style.display = 'none';
+    document.getElementById('seances-create').style.display = 'none';
+    launchPlayer(i);
+  }, 50);
 }
 
 function openQuickSeance() {
