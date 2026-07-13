@@ -41,7 +41,7 @@
     /* NAV */
     nav { background: var(--surface); border-top: 1px solid var(--border); display: flex; height: calc(var(--nav-h) + env(safe-area-inset-bottom,0)); padding-bottom: env(safe-area-inset-bottom,0); flex-shrink: 0; position: relative; }
     nav::after { content: ''; position: absolute; bottom: calc(-1 * env(safe-area-inset-bottom, 0)); left: 0; right: 0; height: env(safe-area-inset-bottom, 0); background: var(--surface); }
-    .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: none; background: none; cursor: pointer; padding: 4px 4px 8px; color: var(--text-muted); font-size: 10px; font-family: inherit; transition: color 0.15s; -webkit-tap-highlight-color: transparent; }
+    .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: none; background: none; cursor: pointer; padding: 2px 4px 12px; color: var(--text-muted); font-size: 10px; font-family: inherit; transition: color 0.15s; -webkit-tap-highlight-color: transparent; }
     .nav-btn svg { transition: transform 0.15s; }
     .nav-btn.active { color: var(--green); }
     .nav-btn.active svg { transform: translateY(-1px); }
@@ -237,7 +237,7 @@
     .player-exo-name { text-align: center; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; min-height: 32px; text-decoration-line: underline; text-decoration-style: dotted; text-decoration-color: var(--text-muted); text-underline-offset: 4px; }
     .player-detail { text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 4px; min-height: 20px; }
     .player-next { text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; min-height: 18px; }
-    .player-step-row { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 10px; margin-bottom: 5px; border-left: 4px solid transparent; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; }
+    .player-step-row { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 10px; margin-bottom: 5px; border: 1px solid transparent; border-left-width: 4px; }
     .player-step-row.done { opacity: 0.35; }
     .player-step-icon { font-size: 15px; flex-shrink: 0; }
     .player-step-name { font-size: 13px; font-weight: 600; flex: 1; }
@@ -2216,11 +2216,16 @@ function loadPlayerStep() {
   const step = playerSteps[playerIdx];
   if (!step) { playerFinished(); return; }
   const pillClass = stepPillClass(step.type);
-  // Pill = contexte (circuit/tour), nom en grand = label, sub en petit = contexte
-  document.getElementById('player-bloc-label').innerHTML = step.sub
-    ? `<span class="player-bloc-pill ${pillClass}">${step.icon} ${step.sub}</span>`
-    : `<span class="player-bloc-pill ${pillClass}">${step.icon} ${step.label}</span>`;
-  document.getElementById('player-exo-name').textContent = step.sub ? step.label : '';
+  // Pour les exercices : pill = contexte circuit, nom en grand
+  // Pour échauffement/récup : pill = type, nom en grand aussi
+  if (step.sub) {
+    document.getElementById('player-bloc-label').innerHTML = `<span class="player-bloc-pill ${pillClass}">${step.icon} ${step.sub}</span>`;
+    document.getElementById('player-exo-name').textContent = step.label;
+  } else {
+    document.getElementById('player-bloc-label').innerHTML = '';
+    document.getElementById('player-exo-name').textContent = step.label;
+    document.getElementById('player-exo-name').style.fontSize = '26px';
+  }
   playerIsReps = step.kind === 'reps';
   if (playerIsReps) {
     document.getElementById('player-time').textContent = step.val + ' reps';
@@ -2281,11 +2286,10 @@ function playerPlay() {
 function updatePlayerCircle(pct, type) {
   const circle = document.getElementById('player-circle');
   if (!circle) return;
-  const circumference = 603; // 2 * PI * 96
+  const circumference = 603;
   circle.style.strokeDasharray = circumference;
   circle.style.strokeDashoffset = circumference * (1 - pct / 100);
-  const colors = { echauf: '#fb923c', pause: '#8b5cf6', recup: '#22c55e', activite: '#4ade80' };
-  circle.style.stroke = pct < 15 ? '#fb923c' : (colors[type] || '#4ade80');
+  circle.style.stroke = pct < 15 ? '#fb923c' : '#4ade80';
 }
 
 function renderPlayerStepsList() {
