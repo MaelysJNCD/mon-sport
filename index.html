@@ -523,10 +523,10 @@
         <div class="player-bloc-label" id="player-bloc-label">Échauffement</div>
         <div class="player-exo-name" id="player-exo-name" onclick="openPlayerExoFiche()" style="cursor:pointer;" title="Voir la description"></div>
         <div class="player-detail" id="player-detail"></div>
-        <div class="cd-circle-wrap" style="margin:16px auto 20px;">
-          <svg class="cd-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-            <circle class="cd-track" cx="110" cy="110" r="96"/>
-            <circle class="cd-progress" id="player-circle" cx="110" cy="110" r="96" transform="rotate(-90 110 110)"/>
+        <div class="cd-circle-wrap" style="width:220px;height:220px;margin:12px auto 12px;">
+          <svg style="width:220px;height:220px;transform:scaleX(-1);" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="110" cy="110" r="96" fill="none" stroke="#e5e7eb" stroke-width="7"/>
+            <circle id="player-circle" cx="110" cy="110" r="96" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-dasharray="603" stroke-dashoffset="0" transform="rotate(-90 110 110)" style="transition:stroke-dashoffset 0.3s linear, stroke 0.3s;"/>
           </svg>
           <div class="cd-time-inner">
             <div id="player-timer-display" style="font-size:48px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;text-align:center;line-height:1;">
@@ -2216,8 +2216,11 @@ function loadPlayerStep() {
   const step = playerSteps[playerIdx];
   if (!step) { playerFinished(); return; }
   const pillClass = stepPillClass(step.type);
-  document.getElementById('player-bloc-label').innerHTML = `<span class="player-bloc-pill ${pillClass}">${step.icon} ${step.label}</span>`;
-  document.getElementById('player-exo-name').textContent = step.sub || '';
+  // Pill = contexte (circuit/tour), nom en grand = label, sub en petit = contexte
+  document.getElementById('player-bloc-label').innerHTML = step.sub
+    ? `<span class="player-bloc-pill ${pillClass}">${step.icon} ${step.sub}</span>`
+    : `<span class="player-bloc-pill ${pillClass}">${step.icon} ${step.label}</span>`;
+  document.getElementById('player-exo-name').textContent = step.sub ? step.label : '';
   playerIsReps = step.kind === 'reps';
   if (playerIsReps) {
     document.getElementById('player-time').textContent = step.val + ' reps';
@@ -2278,11 +2281,11 @@ function playerPlay() {
 function updatePlayerCircle(pct, type) {
   const circle = document.getElementById('player-circle');
   if (!circle) return;
-  const circumference = 603;
+  const circumference = 603; // 2 * PI * 96
   circle.style.strokeDasharray = circumference;
   circle.style.strokeDashoffset = circumference * (1 - pct / 100);
-  const colors = { echauf: '#fb923c', pause: '#8b5cf6', recup: '#22c55e', activite: '#3b82f6' };
-  circle.style.stroke = pct < 15 ? '#f87171' : (colors[type] || '#4ade80');
+  const colors = { echauf: '#fb923c', pause: '#8b5cf6', recup: '#22c55e', activite: '#4ade80' };
+  circle.style.stroke = pct < 15 ? '#fb923c' : (colors[type] || '#4ade80');
 }
 
 function renderPlayerStepsList() {
